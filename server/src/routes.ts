@@ -124,8 +124,10 @@ export async function appRoutes(app: FastifyInstance) {
     return "hábito alterado";
   });
 
+  // rota para retornar o resumo de hábitos por dia do usuário
+  // id do dia, a data, o número de hábitos completos neste dia e quantidade de hábitos disponiveis naquele dia
   app.get("/summary", async () => {
-    const summary = await prisma.$queryRaw`
+    const summary = await prisma.$queryRaw`    
       SELECT 
         D.id, 
         D.date,
