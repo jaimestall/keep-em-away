@@ -17,6 +17,16 @@ export function NewHabitForm() {
   const [title, setTitle] = useState("");
   const [weekDays, setWeekDays] = useState<number[]>([]);
 
+  function handleToggleWeekDay(weekDay: number) {
+    if (weekDays.includes(weekDay)) {
+      const weekDaysWithRemovedOne = weekDays.filter((day) => day !== weekDay);
+      setWeekDays(weekDaysWithRemovedOne);
+    } else {
+      const weekDaysWithAddedOne = [...weekDays, weekDay];
+      setWeekDays(weekDaysWithAddedOne);
+    }
+  }
+
   async function createNewHabit(event: FormEvent) {
     event.preventDefault();
     if (!title || weekDays.length === 0) {
@@ -30,16 +40,6 @@ export function NewHabitForm() {
     setWeekDays([]);
 
     alert("Hábito criado com sucesso!");
-  }
-
-  function handleToggleWeekDay(weekDay: number) {
-    if (weekDays.includes(weekDay)) {
-      const weekDaysWithRemovedOne = weekDays.filter((day) => day !== weekDay);
-      setWeekDays(weekDaysWithRemovedOne);
-    } else {
-      const weekDaysWithAddedOne = [...weekDays, weekDay];
-      setWeekDays(weekDaysWithAddedOne);
-    }
   }
 
   return (
